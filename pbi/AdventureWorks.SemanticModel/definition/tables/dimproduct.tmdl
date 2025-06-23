@@ -1,0 +1,144 @@
+table dimproduct
+	lineageTag: 0f0349a8-6648-4583-a0ab-42ef34329eb1
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e30626b8-6995-4889-96fb-9e3cfc421a05
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column WeightUnitMeasureCode
+		dataType: string
+		lineageTag: 0a6fe6a0-257a-424c-8247-f964a5cee2b5
+		summarizeBy: none
+		sourceColumn: WeightUnitMeasureCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column SizeUnitMeasureCode
+		dataType: string
+		lineageTag: 1e3d9dba-ccf6-4481-aa18-cc3b905c4ca4
+		summarizeBy: none
+		sourceColumn: SizeUnitMeasureCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishProductName
+		dataType: string
+		lineageTag: d7a3424e-8589-426d-b1c0-14c81e9287b0
+		summarizeBy: none
+		sourceColumn: EnglishProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column Color
+		dataType: string
+		lineageTag: 83ff337e-a799-4fd2-81ba-1a6684371670
+		summarizeBy: none
+		sourceColumn: Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column ListPrice
+		dataType: double
+		lineageTag: c166bbbf-f8a1-47b2-9e73-6ececf52e43f
+		summarizeBy: none
+		sourceColumn: ListPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Size
+		dataType: string
+		lineageTag: 8ea69e41-ebb1-47e6-bebb-19268304f08f
+		summarizeBy: none
+		sourceColumn: Size
+
+		annotation SummarizationSetBy = Automatic
+
+	column SizeRange
+		dataType: string
+		lineageTag: b9f21105-1007-44da-87ee-f4b9c91b7f4c
+		summarizeBy: none
+		sourceColumn: SizeRange
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weight
+		dataType: double
+		lineageTag: 1dd2b917-da55-40b9-a681-4d82cf7af69f
+		summarizeBy: none
+		sourceColumn: Weight
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Class
+		dataType: string
+		lineageTag: ed710b8b-375d-41c9-9392-4c9980774ab1
+		summarizeBy: none
+		sourceColumn: Class
+
+		annotation SummarizationSetBy = Automatic
+
+	column Style
+		dataType: string
+		lineageTag: 4a1e132a-509b-47fd-933e-5a48985908d2
+		summarizeBy: none
+		sourceColumn: Style
+
+		annotation SummarizationSetBy = Automatic
+
+	column EnglishDescription
+		dataType: string
+		lineageTag: a5e2d896-3576-47d6-8a03-8566285393f2
+		summarizeBy: none
+		sourceColumn: EnglishDescription
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 65c439f6-3945-48ee-b3a4-23eeaa793358
+		summarizeBy: none
+		sourceColumn: StartDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndDate
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 92db441b-9c19-4160-be1a-d7fe1dda322d
+		summarizeBy: none
+		sourceColumn: EndDate
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 345d0b9a-9d79-4643-9b4c-d5db531a0177
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimproduct = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("77oajh3wezeejnmdlu54fth3om-hjypjl2ezy2u5c2k2qstwfrjdi.datawarehouse.fabric.microsoft.com", "adventureworks_lakehouse"),
+				    dbo_dimproduct = Source{[Schema="dbo",Item="dimproduct"]}[Data],
+				    #"Removed Other Columns" = Table.SelectColumns(dbo_dimproduct,{"ProductKey", "WeightUnitMeasureCode", "SizeUnitMeasureCode", "EnglishProductName", "Color", "ListPrice", "Size", "SizeRange", "Weight", "Class", "Style", "EnglishDescription", "StartDate", "EndDate", "Status"})
+				in
+				    #"Removed Other Columns"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

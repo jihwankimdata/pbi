@@ -1,0 +1,58 @@
+table dimsalesterritory
+	lineageTag: 3c0dfe15-5822-4e93-b10e-a7fd9bc3e2c6
+
+	column SalesTerritoryKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 85b303f0-6f28-4534-be1d-b97a6a487eaa
+		summarizeBy: none
+		sourceColumn: SalesTerritoryKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryAlternateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e3eaf3c-f0f1-40ed-a615-fac3b848ae80
+		summarizeBy: none
+		sourceColumn: SalesTerritoryAlternateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryRegion
+		dataType: string
+		lineageTag: 02430920-a79c-4634-b8a2-7f2b013a9b91
+		summarizeBy: none
+		sourceColumn: SalesTerritoryRegion
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryCountry
+		dataType: string
+		lineageTag: eb80bd20-5273-4829-ad00-139c514e7f8c
+		summarizeBy: none
+		sourceColumn: SalesTerritoryCountry
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesTerritoryGroup
+		dataType: string
+		lineageTag: 2d4ee7d3-aadf-4ef7-8658-3e4466b0336c
+		summarizeBy: none
+		sourceColumn: SalesTerritoryGroup
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dimsalesterritory = m
+		mode: import
+		source =
+				let
+				    Source = Sql.Database("77oajh3wezeejnmdlu54fth3om-hjypjl2ezy2u5c2k2qstwfrjdi.datawarehouse.fabric.microsoft.com", "adventureworks_lakehouse"),
+				    dbo_dimsalesterritory = Source{[Schema="dbo",Item="dimsalesterritory"]}[Data]
+				in
+				    dbo_dimsalesterritory
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
