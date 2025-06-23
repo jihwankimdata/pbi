@@ -10,7 +10,7 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBIDesktopVersion = 2.144.878.0 (25.06)+9cca29236de5114792f4d7188221f91ad4a5cc50
 
-annotation PBI_QueryOrder = ["dimcustomer","dimdate","dimproduct","dimsalesterritory","factinternetsales"]
+annotation PBI_QueryOrder = ["dimcustomer","dimdate","dimproduct","dimsalesterritory","factinternetsales","Measure"]
 
 annotation PBI_ProTooling = ["DevMode"]
 
@@ -19,6 +19,7 @@ ref table dimdate
 ref table dimproduct
 ref table dimsalesterritory
 ref table factinternetsales
+ref table Measure
 
 ref cultureInfo en-US
 
